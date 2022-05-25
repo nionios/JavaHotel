@@ -1,5 +1,4 @@
-public interface HRinterface
-          extends java.rmi.Remote { 
+public interface HR extends java.rmi.Remote {
     public long add(long a, long b) 
         throws java.rmi.RemoteException; 
  
@@ -11,5 +10,4 @@ public interface HRinterface
  
     public long div(long a, long b) 
         throws java.rmi.RemoteException; 
-} 
-
+}

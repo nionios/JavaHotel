@@ -3,13 +3,12 @@ import java.rmi.RemoteException;
 import java.net.MalformedURLException; 
 import java.rmi.NotBoundException; 
  
-public class HRClient {
+public class HRClient { 
  
     public static void main(String[] args) { 
         try { 
-            HRinterface c = (HRinterface)
-                           Naming.lookup(
-                 "rmi://mpi9:7500/CalculatorService"); 
+            HR c = (HR)
+            Naming.lookup("rmi://mpi9:7500/HRService");
             System.out.println( c.sub(9, 3) ); 
             System.out.println( c.add(9, 3) ); 
             System.out.println( c.mul(9, 3) ); 
@@ -33,9 +32,7 @@ public class HRClient {
                        "NotBoundException"); 
             System.out.println(nbe); 
         } 
-        catch (
-            java.lang.ArithmeticException
-                                      ae) { 
+        catch (java.lang.ArithmeticException ae) {
             System.out.println(); 
             System.out.println(
              "java.lang.ArithmeticException"); 
