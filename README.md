@@ -5,6 +5,4 @@ can be used by multiple clients concurrently.
 
 ## Requirements
 
-- Java
-
-- RMI API
+- OpenJDK 11.0 (in Later Versions rmic is depracated)
