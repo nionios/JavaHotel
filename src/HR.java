@@ -1,13 +1,5 @@
 public interface HR extends java.rmi.Remote {
-    public long add(long a, long b) 
-        throws java.rmi.RemoteException; 
- 
-    public long sub(long a, long b) 
-        throws java.rmi.RemoteException; 
- 
-    public long mul(long a, long b) 
-        throws java.rmi.RemoteException; 
- 
-    public long div(long a, long b) 
-        throws java.rmi.RemoteException; 
+
+    public void book(String Hostname, String type, int number, String name)
+        throws java.rmi.RemoteException;
 }
