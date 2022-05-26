@@ -8,7 +8,7 @@ public class HRClient {
     public static void main(String[] args) { 
         try { 
             HR c = (HR)
-            Naming.lookup("rmi://mpi9:7500/HRService");
+            Naming.lookup("rmi://localhost:7500/HRService");
             System.out.println( c.sub(9, 3) ); 
             System.out.println( c.add(9, 3) ); 
             System.out.println( c.mul(9, 3) ); 
