@@ -23,43 +23,93 @@ implements HR {
     int[] quadRooms   = {10,140};
     List<BookingEntry> BookingList;
 
-    public HRImpl()
-        throws java.rmi.RemoteException {
-        super();
-    }
-
-    // TODO: Hostname variable?? Instanciate the list
-    public void book(String hostname, String type, int number, String name)
-        throws java.rmi.RemoteException {
-        Boolean checked = false;
-        /* Check the appropriate room type */
+    private int getAvailableRooms (String type) {
+        int availableRooms;
         switch (type) {
             case "A":
-                if (singleRooms[0] > 0) checked = true;
+                availableRooms = singleRooms[0];
                 break;
             case "B":
-                if (doubleRooms[0] > 0) checked = true;
+                availableRooms = doubleRooms[0];
                 break;
             case "C":
-                if (twinRooms[0] > 0) checked = true;
+                availableRooms = twinRooms[0];
                 break;
             case "D":
-                if (tripleRooms[0] > 0) checked = true;
+                availableRooms = tripleRooms[0];
                 break;
             case "E":
-                if (quadRooms[0] > 0) checked = true;
+                availableRooms = quadRooms[0];
                 break;
             default:
                 System.out.println("Invalid Room Type");
-                return;
+                return -1;
         }
-        if (checked) {
-            BookingEntry InputEntry = new BookingEntry(type, number, name);
-            BookingList.add(InputEntry);
-            System.out.println("Booked a room of type " + type +
-                               " for customer " + name);
-        } else {
-            System.out.println("No more rooms of type " + type);
+        return availableRooms;
+    }
+
+    private void subtractAvailableRooms
+    (String type, int numberOfRoomsToSubstract) {
+        int availableRooms;
+        switch (type) {
+            case "A":
+                singleRooms[0] -= numberOfRoomsToSubstract;
+                break;
+            case "B":
+                doubleRooms[0] -= numberOfRoomsToSubstract;
+                break;
+            case "C":
+                twinRooms[0] -= numberOfRoomsToSubstract;
+                break;
+            case "D":
+                tripleRooms[0] -= numberOfRoomsToSubstract;
+                break;
+            case "E":
+                quadRooms[0] -= numberOfRoomsToSubstract;
+                break;
+            default:
+                System.out.println("Invalid Room Type");
+                break;
         }
     }
+
+    public HRImpl()
+        throws java.rmi.RemoteException {
+        BookingList = new ArrayList<BookingEntry>();
+        //super();
+    }
+
+    public int prebook
+    (String hostname, String type, int number, String name)
+    throws java.rmi.RemoteException {
+        System.out.println("==> Incoming request:\n=> Request from "+hostname +
+                           " for room of type '" + type + "'" +
+                           " for customer '"     + name + "'" );
+        /* Check the appropriate room type */
+        int availableRooms = getAvailableRooms(type);
+        System.out.println("* Rooms of type " + type +
+                           " left: " + availableRooms);
+        // Return number of available rooms to client
+        return availableRooms;
+    }
+
+   public Boolean book
+   (String hostname, String type, int toBeBookedRooms, String name)
+       throws java.rmi.RemoteException {
+       int availableRooms = getAvailableRooms(type);
+       /* If available rooms are now less than expected, then another customer
+       *  has booked in the period that the this one was prebooking, so check
+       *  needs to be performed again to ensure there are enough rooms.*/
+       if (toBeBookedRooms < availableRooms) return false;
+       // If this goes through the continue with the booking of the rooms
+       BookingEntry InputEntry =
+           new BookingEntry(type, toBeBookedRooms, name);
+       BookingList.add(InputEntry);
+       // Subtract the amount of rooms booked
+       subtractAvailableRooms(type,toBeBookedRooms);
+       System.out.println("* Booked " + toBeBookedRooms +
+               " room(s) of type " + type +
+               " for customer " + name);
+       return true;
+   }
 }

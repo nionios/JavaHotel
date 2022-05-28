@@ -1,7 +1,6 @@
 import java.rmi.Naming;
 
 public class HRServer {
-
    public HRServer() {
      try {
        HR c = new HRImpl();
@@ -10,7 +9,6 @@ public class HRServer {
        System.out.println("Trouble: " + e);
      }
    }
-
    public static void main(String args[]) {
      new HRServer();
    }

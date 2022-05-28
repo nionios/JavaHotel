@@ -1,25 +1,60 @@
-import java.rmi.Naming; 
-import java.rmi.RemoteException; 
-import java.net.MalformedURLException; 
-import java.rmi.NotBoundException; 
- 
-public class HRClient { 
- 
-    public static void main(String[] args) { 
-        try { 
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
+import java.util.Scanner;
+
+public class HRClient {
+
+    public static void main(String[] args) {
+        try {
             HR c = (HR)
             Naming.lookup("rmi://localhost:7500/HRService");
-            c.book("localhost","E",4,"Dionisis");
+            int inputNumberRooms = 40;
+            String inputCustomer = "Dionisis Nikolopoulos";
+            String inputType = "E";
+            int availableReturnedRooms =
+                c.prebook("localhost",
+                           inputType,
+                           inputNumberRooms,
+                           inputCustomer);
+            if (availableReturnedRooms < inputNumberRooms) {
+                Scanner scan = new Scanner(System.in);
+                while (true) {
+                    System.out.println("* Only " + availableReturnedRooms +
+                            " available for selected room type " + inputType +
+                            ". Do you want to continue booking (y/n):");
+                    String choice = scan.nextLine();
+                    System.out.println("choice is " + choice);
+                    if (choice.equals("y") || choice.equals("Y")) {
+                        if (c.book(
+                            "localhost","E",availableReturnedRooms,"Dionisis")){
+                            System.out.println("* Booked " +
+                                                availableReturnedRooms +
+                                                " rooms of type " + inputType +
+                                                " for customer "  +
+                                                inputCustomer);
+                        } else {
+                            System.out.println("! Sorry, another client just" +
+                                               "booked these rooms");
+                        }
+                        break;
+                    }
+                    else if (choice.equals("n") || choice.equals("N")) {break;}
+                    else System.out.println("Please input 'y' or 'n'");
+                }
+                scan.close();
+            }
         }
-        catch (MalformedURLException murle) { 
-            System.out.println(); 
+        catch (MalformedURLException murle) {
+            System.out.println();
             System.out.println( "MalformedURLException");
             System.out.println(murle);
         }
         catch (RemoteException re) {
             System.out.println();
             System.out.println("RemoteException");
-            System.out.println(re); 
+            System.out.println(re);
         }
         catch (NotBoundException nbe) {
             System.out.println();
@@ -30,7 +65,7 @@ public class HRClient {
             System.out.println();
             System.out.println("java.lang.ArithmeticException");
             System.out.println(ae);
-        } 
-    } 
-} 
+        }
+    }
+}
 

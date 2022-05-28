@@ -1,5 +1,9 @@
 public interface HR extends java.rmi.Remote {
+    public int prebook
+        (String Hostname, String type, int number, String name)
+        throws java.rmi.RemoteException;
 
-    public void book(String Hostname, String type, int number, String name)
+    public Boolean book
+        (String Hostname, String type, int toBeBookedRooms, String name)
         throws java.rmi.RemoteException;
 }
