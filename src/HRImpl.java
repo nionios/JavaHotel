@@ -50,7 +50,6 @@ implements HR {
 
     private void subtractAvailableRooms
     (String type, int numberOfRoomsToSubstract) {
-        int availableRooms;
         switch (type) {
             case "A":
                 singleRooms[0] -= numberOfRoomsToSubstract;
@@ -59,13 +58,13 @@ implements HR {
                 doubleRooms[0] -= numberOfRoomsToSubstract;
                 break;
             case "C":
-                twinRooms[0] -= numberOfRoomsToSubstract;
+                twinRooms[0]   -= numberOfRoomsToSubstract;
                 break;
             case "D":
                 tripleRooms[0] -= numberOfRoomsToSubstract;
                 break;
             case "E":
-                quadRooms[0] -= numberOfRoomsToSubstract;
+                quadRooms[0]   -= numberOfRoomsToSubstract;
                 break;
             default:
                 System.out.println("Invalid Room Type");
@@ -83,7 +82,8 @@ implements HR {
     (String hostname, String type, int number, String name)
     throws java.rmi.RemoteException {
         System.out.println("==> Incoming request:\n=> Request from "+hostname +
-                           " for room of type '" + type + "'" +
+                           " for " + number +
+                           " room(s) of type '" + type + "'" +
                            " for customer '"     + name + "'" );
         /* Check the appropriate room type */
         int availableRooms = getAvailableRooms(type);
@@ -96,6 +96,10 @@ implements HR {
    public Boolean book
    (String hostname, String type, int toBeBookedRooms, String name)
        throws java.rmi.RemoteException {
+        System.out.println("==> Incoming request:\n=> Request from "+hostname +
+                           " for " + toBeBookedRooms +
+                           " room(s) of type '" + type + "'" +
+                           " for customer '"     + name + "'" );
        int availableRooms = getAvailableRooms(type);
        /* If available rooms are now less than expected, then another customer
        *  has booked in the period that the this one was prebooking, so check
@@ -111,5 +115,22 @@ implements HR {
                " room(s) of type " + type +
                " for customer " + name);
        return true;
+   }
+
+   public String list (String hostname)
+       throws java.rmi.RemoteException {
+        System.out.println("==> Incoming request:\n=> Request from "+ hostname);
+        String info = " ** Info of all rooms in Java Hotel! **" +
+                      "\n > " + singleRooms[0] + " of Single Rooms (type A)" +
+                      " - price: " + singleRooms[1] + " per night" +
+                      "\n > " + doubleRooms[0] + " of Double Rooms (type B)" +
+                      " - price: " + doubleRooms[1] + " per night" +
+                      "\n > " + twinRooms[0]   + " of Twin Rooms (type C)"   +
+                      " - price: " + twinRooms[1] + " per night" +
+                      "\n > " + tripleRooms[0] + " of Triple Rooms (type D)" +
+                      " - price: " + tripleRooms[1] + " per night" +
+                      "\n > " + quadRooms[0]   + " of Quad Rooms (type E)"   +
+                      " - price: " + quadRooms[1] + " per night";
+        return info;
    }
 }

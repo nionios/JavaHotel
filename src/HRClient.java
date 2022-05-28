@@ -13,11 +13,12 @@ public class HRClient {
             int inputNumberRooms = 40;
             String inputCustomer = "Dionisis Nikolopoulos";
             String inputType = "E";
+            String inputHostname = "localhost";
             int availableReturnedRooms =
-                c.prebook("localhost",
-                           inputType,
-                           inputNumberRooms,
-                           inputCustomer);
+                c.prebook(inputHostname,
+                          inputType,
+                          inputNumberRooms,
+                          inputCustomer);
             if (availableReturnedRooms < inputNumberRooms) {
                 Scanner scan = new Scanner(System.in);
                 while (true) {
@@ -45,6 +46,8 @@ public class HRClient {
                 }
                 scan.close();
             }
+            String returnedInfo = c.list(inputHostname);
+            System.out.println(returnedInfo);
         }
         catch (MalformedURLException murle) {
             System.out.println();
