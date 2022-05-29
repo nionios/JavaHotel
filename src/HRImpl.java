@@ -11,6 +11,13 @@ class BookingEntry {
         CustomerName  = InputName;
         NumberOfRooms = InputNumber;
     }
+
+    public String getPrettyInfo() {
+        String allInfo = "Booking Entry for customer " + CustomerName +
+                         " : Booked " + NumberOfRooms +
+                         " room(s) of type " + TypeOfRooms;
+        return allInfo;
+    }
 }
 
 public class HRImpl
@@ -81,7 +88,8 @@ implements HR {
     public int prebook
     (String hostname, String type, int number, String name)
     throws java.rmi.RemoteException {
-        System.out.println("==> Incoming request:\n=> Request from "+hostname +
+        System.out.println("==> Incoming request for method prebook():" +
+                           "\n=> Request from "+ hostname +
                            " for " + number +
                            " room(s) of type '" + type + "'" +
                            " for customer '"     + name + "'" );
@@ -96,7 +104,8 @@ implements HR {
    public Boolean book
    (String hostname, String type, int toBeBookedRooms, String name)
        throws java.rmi.RemoteException {
-        System.out.println("==> Incoming request:\n=> Request from "+hostname +
+        System.out.println("==> Incoming request for method book():" +
+                           "\n=> Request from "+ hostname +
                            " for " + toBeBookedRooms +
                            " room(s) of type '" + type + "'" +
                            " for customer '"     + name + "'" );
@@ -104,7 +113,7 @@ implements HR {
        /* If available rooms are now less than expected, then another customer
        *  has booked in the period that the this one was prebooking, so check
        *  needs to be performed again to ensure there are enough rooms.*/
-       if (toBeBookedRooms < availableRooms) return false;
+       if (toBeBookedRooms > availableRooms) return false;
        // If this goes through the continue with the booking of the rooms
        BookingEntry InputEntry =
            new BookingEntry(type, toBeBookedRooms, name);
@@ -119,7 +128,8 @@ implements HR {
 
    public String list (String hostname)
        throws java.rmi.RemoteException {
-        System.out.println("==> Incoming request:\n=> Request from "+ hostname);
+        System.out.println("==> Incoming request for method list():" +
+                           "\n=> Request from " + hostname);
         String info = " ** Info of all rooms in Java Hotel! **" +
                       "\n > " + singleRooms[0] + " of Single Rooms (type A)" +
                       " - price: " + singleRooms[1] + " per night" +
@@ -131,6 +141,17 @@ implements HR {
                       " - price: " + tripleRooms[1] + " per night" +
                       "\n > " + quadRooms[0]   + " of Quad Rooms (type E)"   +
                       " - price: " + quadRooms[1] + " per night";
+        return info;
+   }
+
+   public String guests (String hostname)
+       throws java.rmi.RemoteException {
+        System.out.println("==> Incoming request for method guests():" +
+                           "\n=> Request from " + hostname);
+        String info = " ** Info of all guests in Java Hotel! **";
+        // Iterating over every Booking Entry and appending all info in var
+        for (BookingEntry currentBookingEntry : BookingList)
+            info += "\n" + currentBookingEntry.getPrettyInfo();
         return info;
    }
 }

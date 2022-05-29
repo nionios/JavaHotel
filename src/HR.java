@@ -9,4 +9,7 @@ public interface HR extends java.rmi.Remote {
 
     public String list (String Hostname)
         throws java.rmi.RemoteException;
+
+    public String guests (String Hostname)
+        throws java.rmi.RemoteException;
 }
