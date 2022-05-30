@@ -15,9 +15,11 @@ rmic javaHotel.server.HRImpl
 echo "* Generated stub file with rmic!"
 mv ./javaHotel/server/HRImpl_Stub.class ./javaHotel/client/
 echo "* Moved stub file to ./bin/client/!"
-#echo "> Generating jar files..."
+echo "> Generating jar files..."
 #cd ../jar/
-#jar cfm JavaHotelServer.jar ../javaHotel/manifests/serverManifest.mf ../bin/javaHotel/server/*
-#jar cfm JavaHotelClient.jar ../javaHotel/manifests/clientManifest.mf ../bin/javaHotel/client/*
-#echo "* Generated jar files in jar/!"
+jar cvfm JavaHotelServer.jar ../javaHotel/manifests/serverManifest.mf javaHotel/server/* javaHotel/common/* javaHotel/helpers/*
+jar cvfm JavaHotelClient.jar ../javaHotel/manifests/clientManifest.mf javaHotel/client/* javaHotel/common/* javaHotel/helpers/*
+echo "* Generated jar files in bin/!"
+mv *.jar ../jar/
+echo "* Moved jar files in jar/!"
 echo "* Build complete"
