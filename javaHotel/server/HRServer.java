@@ -1,6 +1,6 @@
 package javaHotel.server;
 
-import javaHotel.HRInterface.HR;
+import javaHotel.common.*;
 import java.rmi.Naming;
 
 public class HRServer {
@@ -12,7 +12,7 @@ public class HRServer {
        System.out.println("Trouble: " + e);
      }
    }
-   public static void main(String args[]) {
+   public static void main(String[] args) {
      new HRServer();
    }
 }

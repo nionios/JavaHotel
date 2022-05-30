@@ -1,7 +1,8 @@
 package javaHotel.server;
 
-import javaHotel.HRInterface.HR;
-import java.util.*;
+import javaHotel.common.*;
+import java.util.ArrayList;
+import java.util.List;
 
 class BookingEntry {
     String TypeOfRooms;
@@ -114,10 +115,10 @@ implements HR {
                            " for customer '"     + name + "'" );
        int availableRooms = getAvailableRooms(type);
        /* If available rooms are now less than expected, then another customer
-       *  has booked in the period that the this one was prebooking, so check
+       *  has booked in the period that this one was prebooking, so check
        *  needs to be performed again to ensure there are enough rooms.*/
        if (toBeBookedRooms > availableRooms) return false;
-       // If this goes through the continue with the booking of the rooms
+       // If this goes through continue with the booking of the rooms
        BookingEntry InputEntry =
            new BookingEntry(type, toBeBookedRooms, name);
        BookingList.add(InputEntry);
