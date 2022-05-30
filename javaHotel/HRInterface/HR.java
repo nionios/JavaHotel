@@ -1,3 +1,5 @@
+package javaHotel.HRInterface;
+
 public interface HR extends java.rmi.Remote {
     public int prebook
         (String Hostname, String type, int number, String name)

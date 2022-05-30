@@ -1,3 +1,6 @@
+package javaHotel.client;
+
+import javaHotel.HRInterface.HR;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.net.MalformedURLException;
@@ -137,10 +140,13 @@ public class HRClient {
                 String inputType     = args[2];
                 String inputCustomer = args[4];
                 int    inputNumberRooms = Integer.parseInt(args[3]);
-                if (c.cancel(inputHostname,
-                             inputType,
-                             inputNumberRooms,
-                             inputCustomer)) print("*");
+                //Unimplemented on server
+              //  if (c.cancel(inputHostname,
+              //               inputType,
+              //               inputNumberRooms,
+              //               inputCustomer)) print("*");
+              // PLaceholder for exception
+              c.list(inputHostname);
             }
         } catch (RemoteException re) {
             print();

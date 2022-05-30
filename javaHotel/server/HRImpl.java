@@ -1,3 +1,6 @@
+package javaHotel.server;
+
+import javaHotel.HRInterface.HR;
 import java.util.*;
 
 class BookingEntry {
