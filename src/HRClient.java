@@ -5,17 +5,29 @@ import java.rmi.NotBoundException;
 import java.util.Scanner;
 
 public class HRClient {
+    // Helper function to avoid writing "System.out.println" every time
+    private static void print(String strToPrint) {
+        System.out.println(strToPrint);
+    }
+    // Overload for exceptions
+    private static void print(Exception excToPrint) {
+        System.out.println(excToPrint);
+    }
+    // Overload for empty lines
+    private static void print() {
+        System.out.println("");
+    }
 
     private static void booking (String[] args, HR c) {
     try {
         if (args.length != 5) {
-           System.out.println("Usage: java HRClient book [hostname] [type] " +
-                              "[number] [customer_name]");
+           print("Usage: java HRClient book [hostname] [type] [number] " +
+                 "[customer_name]");
         } else {
             String inputHostname = args[1];
-            String inputType = args[2];
-            int    inputNumberRooms = Integer.parseInt(args[3]);
+            String inputType     = args[2];
             String inputCustomer = args[4];
+            int    inputNumberRooms = Integer.parseInt(args[3]);
             int availableReturnedRooms =
                 c.prebook(inputHostname,
                           inputType,
@@ -27,85 +39,118 @@ public class HRClient {
                 availableReturnedRooms != 0) {
                 Scanner scan = new Scanner(System.in);
                 while (true) {
-                    System.out.println("* Only " + availableReturnedRooms +
-                            " available for selected room type " + inputType +
-                            ". Do you want to continue booking (y/n):");
+                    print("* Only " + availableReturnedRooms +
+                          " available for selected room type " + inputType +
+                          ". Do you want to continue booking (y/n):");
                     String choice = scan.nextLine();
-                    System.out.println("choice is " + choice);
                     if (choice.equals("y") || choice.equals("Y")) {
                         if (c.book(inputHostname,
                                    inputType,
                                    availableReturnedRooms,
                                    inputCustomer)) {
-                            System.out.println("* Booked " +
-                                                availableReturnedRooms +
-                                                " rooms of type " + inputType +
-                                                " for customer "  +
-                                                inputCustomer);
+                            print("* Booked " + availableReturnedRooms +
+                                   " rooms of type " + inputType +
+                                   " for customer "  + inputCustomer);
                         } else {
-                            System.out.println("! Sorry, another client just" +
+                            print("! Sorry, another client just" +
                                                "booked these rooms");
                         }
                         break;
                     }
                     else if (choice.equals("n") || choice.equals("N")) {break;}
-                    else System.out.println("Please input 'y' or 'n'");
+                    else print("Please input 'y' or 'n'");
                 }
                 scan.close();
             } else if (availableReturnedRooms == 0) {
-                System.out.println("! Sorry, no rooms left for room type " +
-                                   inputType);
+                print("! Sorry, no rooms left for room type " +
+                                   inputType + "\n Do you want to be notified "
+                                   + "when a room of type " + inputType +
+                                   " becomes available?");
+                Scanner scan = new Scanner(System.in);
+                while (true) {
+                    String choice = scan.nextLine();
+                    if (choice.equals("y") || choice.equals("Y")) {
+                        //TODO: implement this
+                        //c.notify(inputType, inputNumberRooms);
+                        break;
+                    }
+                    else if (choice.equals("n") || choice.equals("N")) {break;}
+                    else print("Please input 'y' or 'n'");
+                }
+                scan.close();
             } else {
                 // If enough rooms are available just book them normally
                 c.book(inputHostname,
                        inputType,
                        inputNumberRooms,
                        inputCustomer);
-                System.out.println("* Booked "       + inputNumberRooms +
-                                   " rooms of type " + inputType +
-                                   " for customer "  + inputCustomer);
+                print("* Booked "       + inputNumberRooms +
+                      " rooms of type " + inputType +
+                      " for customer "  + inputCustomer);
             }
          }
     } catch (RemoteException re) {
-        System.out.println();
-        System.out.println("RemoteException in booking()");
-        System.out.println(re); }
+        print();
+        print("RemoteException in booking()");
+        print(re); }
     }
 
     private static void list(String[] args, HR c) {
         try {
             if (args.length != 2) {
-                System.out.println("Usage: java HRClient list [hostname]");
+                print("Usage: java HRClient list [hostname]");
             } else {
                 String inputHostname = args[1];
                 String returnedInfo = c.list(inputHostname);
-                System.out.println(returnedInfo);
+                print(returnedInfo);
             }
         } catch (RemoteException re) {
-            System.out.println();
-            System.out.println("RemoteException in list()");
-            System.out.println(re);
+            print();
+            print("RemoteException in list()");
+            print(re);
         }
     }
 
     private static void guests(String[] args, HR c) {
         try {
             if (args.length != 2) {
-                System.out.println("Usage: java HRClient guests [hostname]");
+                print("Usage: java HRClient guests [hostname]");
             } else {
                 String inputHostname = args[1];
                 String returnedInfo = c.guests(inputHostname);
-                System.out.println(returnedInfo);
+                print(returnedInfo);
             }
         } catch (RemoteException re) {
-            System.out.println();
-            System.out.println("RemoteException in guests()");
-            System.out.println(re);
+            print();
+            print("RemoteException in guests()");
+            print(re);
+        }
+    }
+
+    private static void cancel(String[] args, HR c) {
+        try {
+            if (args.length != 5) {
+                print("Usage: java HRClient cancel [hostname]" +
+                                   " [type] [number] [customer_name]");
+            } else {
+                String inputHostname = args[1];
+                String inputType     = args[2];
+                String inputCustomer = args[4];
+                int    inputNumberRooms = Integer.parseInt(args[3]);
+                if (c.cancel(inputHostname,
+                             inputType,
+                             inputNumberRooms,
+                             inputCustomer)) print("*");
+            }
+        } catch (RemoteException re) {
+            print();
+            print("RemoteException in cancel()");
+            print(re);
         }
     }
 
     private static void usage() {
-        System.out.println("Usage: java HRClient [options] [suboptions]");
+        print("Usage: java HRClient [options] [suboptions]");
     }
 
     public static void main(String[] args) {
@@ -122,30 +167,33 @@ public class HRClient {
                 case "guests":
                     guests(args, c);
                     break;
+                case "cancel":
+                    cancel(args, c);
+                    break;
                 default:
                     usage();
                     break;
             }
         }
         catch (RemoteException re) {
-            System.out.println();
-            System.out.println("RemoteException");
-            System.out.println(re);
+            print();
+            print("RemoteException");
+            print(re);
         }
         catch (MalformedURLException murle) {
-            System.out.println();
-            System.out.println( "MalformedURLException");
-            System.out.println(murle);
+            print();
+            print( "MalformedURLException");
+            print(murle);
         }
         catch (NotBoundException nbe) {
-            System.out.println();
-            System.out.println("NotBoundException");
-            System.out.println(nbe);
+            print();
+            print("NotBoundException");
+            print(nbe);
         }
         catch (java.lang.ArithmeticException ae) {
-            System.out.println();
-            System.out.println("java.lang.ArithmeticException");
-            System.out.println(ae);
+            print();
+            print("java.lang.ArithmeticException");
+            print(ae);
         }
     }
 }
