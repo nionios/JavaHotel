@@ -5,7 +5,7 @@ import javaHotel.helpers.*;
 import javaHotel.common.*;
 
 public class HRList {
-    public static void list(String[] args, HR c) {
+    public void list(String[] args, HR c) {
         SimplePrinter print = new SimplePrinter();
         try {
             if (args.length != 2) {

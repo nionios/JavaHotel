@@ -6,7 +6,7 @@ import java.rmi.RemoteException;
 import java.util.Scanner;
 
 public class HRBooking {
-    public static void startBookProcess (String[] args, HR c) {
+    public void startBookProcess (String[] args, HR c) {
         SimplePrinter print = new SimplePrinter();
         try {
             if (args.length != 5) {
@@ -59,8 +59,9 @@ public class HRBooking {
                     while (true) {
                         String choice = scan.nextLine();
                         if (choice.equals("y") || choice.equals("Y")) {
-                            //TODO: implement this
-                            //c.notify(inputType, inputNumberRooms);
+                            c.notify(inputHostname,
+                                     inputType,
+                                     inputNumberRooms);
                             break;
                         }
                         else if (choice.equals("n") || choice.equals("N")) {break;}

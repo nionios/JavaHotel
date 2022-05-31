@@ -5,7 +5,7 @@ import javaHotel.helpers.*;
 import javaHotel.common.*;
 
 public class HRCancel {
-    public static void cancelRooms(String[] args, HR c) {
+    public void cancelRooms(String[] args, HR c) {
         SimplePrinter print = new SimplePrinter();
         try {
             if (args.length != 5) {
@@ -16,13 +16,17 @@ public class HRCancel {
                 String inputType     = args[2];
                 String inputCustomer = args[4];
                 int    inputNumberRooms = Integer.parseInt(args[3]);
-                //Unimplemented on server
-                //  if (c.cancel(inputHostname,
-                //               inputType,
-                //               inputNumberRooms,
-                //               inputCustomer)) print("*");
-                // PLaceholder for exception
-                c.list(inputHostname);
+                if (c.cancel(inputHostname,
+                             inputType,
+                             inputNumberRooms,
+                             inputCustomer))
+                        print.out("* Cancelled " + inputNumberRooms +
+                                  " rooms of type " + inputType +
+                                  " for customer ");
+                else print.out("! Could not cancel rooms! Are you sure you" +
+                               " booked at least " + inputNumberRooms +
+                               " of type " + inputType +
+                               " under the customer name " + inputCustomer);
             }
         } catch (RemoteException re) {
             print.out();
