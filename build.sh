@@ -4,14 +4,15 @@ echo "* Build of Java Hotel Started"
 cd ./src/
 echo "* Moved into ./src/"
 echo "> Compiling .java files...(0/4)"
-javac ./javaHotel/client/*.java -d ./bin/
-echo "* Compiled client .java into .class files to ./bin/! (1/4)"
-javac ./javaHotel/server/*.java -d ./bin/
-echo "* Compiled common .java files into .class files to ./bin/! (2/4)"
-javac ./javaHotel/common/*.java -d ./bin/
-echo "* Compiled helpers into .class files to ./bin/! (3/4)"
-javac ./javaHotel/helpers/*.java -d ./bin/
-echo "* Compiled server .java server files into .class files to ./bin/! (4/4)"
+javac ./javaHotel/client/*.java -d ../bin/
+echo "* Compiled client .java into .class files to ../bin/! (1/4)"
+javac ./javaHotel/server/*.java -d ../bin/
+echo "* Compiled server .java files into .class files to ../bin/! (2/4)"
+javac ./javaHotel/common/*.java -d ../bin/
+echo "* Compiled common .java files into .class files to ../bin/! (3/4)"
+javac ./javaHotel/helpers/*.java -d ../bin/
+echo "* Compiled helpers into .class files to ../bin/! (4/4)"
+echo "* Compiled server .java server files into .class files to ../bin/!"
 cd ../bin/
 echo "* Moved into ../bin/"
 echo "> Generating stub file with rmic...(0/1)"
