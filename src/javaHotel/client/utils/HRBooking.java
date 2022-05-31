@@ -10,26 +10,33 @@ public class HRBooking {
         SimplePrinter print = new SimplePrinter();
         try {
             if (args.length != 5) {
-                print.out("Usage: java HRClient book [hostname] [type] [number] " +
-                        "[customer_name]");
+                print.out("Usage: java HRClient book [hostname] [type]" +
+                          " [number] [customer_name]");
             } else {
                 String inputHostname = args[1];
                 String inputType     = args[2];
                 String inputCustomer = args[4];
                 int    inputNumberRooms = Integer.parseInt(args[3]);
+                if (!inputType.contains("A") &&
+                    !inputType.contains("B") &&
+                    !inputType.contains("C") &&
+                    !inputType.contains("D") &&
+                    !inputType.contains("E")) {
+                    print.out("Please input a valid room type (A,B,C,D,E)");
+                }
                 int availableReturnedRooms =
                     c.prebook(inputHostname,
                             inputType,
                             inputNumberRooms,
                             inputCustomer);
-                /* If less than enough rooms are available ask customer whether to
-                 *  book them or not */
+                /* If less than enough rooms are available ask customer whether
+                 * to book them or not */
                 if (availableReturnedRooms < inputNumberRooms &&
                         availableReturnedRooms != 0) {
                     Scanner scan = new Scanner(System.in);
                     while (true) {
                         print.out("* Only " + availableReturnedRooms +
-                                " available for selected room type " + inputType +
+                                " available for selected room type "+inputType +
                                 ". Do you want to continue booking (y/n):");
                         String choice = scan.nextLine();
                         if (choice.equals("y") || choice.equals("Y")) {
@@ -46,34 +53,36 @@ public class HRBooking {
                             }
                             break;
                         }
-                        else if (choice.equals("n") || choice.equals("N")) {break;}
-                        else print.out("Please input 'y' or 'n'");
+                        else if (choice.equals("n") || choice.equals("N")) {
+                            break;
+                        } else print.out("Please input 'y' or 'n'");
                     }
                     scan.close();
                 } else if (availableReturnedRooms == 0) {
                     print.out("! Sorry, no rooms left for room type " +
                               inputType + "\n Do you want to be notified "
                               + "when a room of type " + inputType +
-                              " becomes available?");
+                              " becomes available? (y/n):");
                     Scanner scan = new Scanner(System.in);
                     while (true) {
                         String choice = scan.nextLine();
                         if (choice.equals("y") || choice.equals("Y")) {
                             c.notify(inputHostname,
                                      inputType,
-                                     inputNumberRooms);
+                                     inputCustomer);
                             break;
                         }
-                        else if (choice.equals("n") || choice.equals("N")) {break;}
-                        else print.out("Please input 'y' or 'n'");
+                        else if (choice.equals("n") || choice.equals("N")) {
+                            break;
+                        } else print.out("Please input 'y' or 'n'");
                     }
                     scan.close();
                 } else {
                     // If enough rooms are available just book them normally
                     c.book(inputHostname,
-                            inputType,
-                            inputNumberRooms,
-                            inputCustomer);
+                           inputType,
+                           inputNumberRooms,
+                           inputCustomer);
                     print.out("* Booked "       + inputNumberRooms +
                               " rooms of type " + inputType +
                               " for customer "  + inputCustomer);

@@ -11,11 +11,13 @@ public class HRImpl
 extends java.rmi.server.UnicastRemoteObject
 implements HR {
     List<BookingEntry> BookingList;
+    List<BookingEntry> NotifyList;
     RoomDatabase RoomDB = new RoomDatabase();
 
     public HRImpl()
         throws java.rmi.RemoteException {
         BookingList = new ArrayList<BookingEntry>();
+        NotifyList  = new ArrayList<BookingEntry>();
         //super();
     }
 
@@ -65,6 +67,7 @@ implements HR {
                 break;
             default:
                 SimplePrinter print = new SimplePrinter();
+                //This should never fire
                 print.out("Invalid Room Type");
                 break;
         }
@@ -180,11 +183,24 @@ implements HR {
         return info;
    }
 
-   public void notify (String hostname, String type, int number)
+   public void notify(String inputHostname, String inputType, String inputName)
        throws java.rmi.RemoteException {
         SimplePrinter print = new SimplePrinter();
         print.out("==> Incoming request for method notify():" +
-                  "\n=> Request from " + hostname);
+                  "\n=> Request from " + inputHostname);
    }
+
+   //private synchronized void notifyAvailabilityListeners
+   //    (String inputType, int inputNumber) {
+   //    for (EmptyRoomListener roomListener : getAvailableRooms(inputType)/*.keySet()*/) {
+   //        try {
+   //            roomListener.Trigger(inputType, inputNumber);
+   //        } catch (RemoteException ex) {
+   //            SimplePrinter print = new SimplePrinter();
+   //            print.out("EmptyRoomListener is not responding");
+   //            print.out(ex);
+   //        }
+   //    }
+   //}
 
 }
