@@ -1,0 +1,4 @@
+Manifest-version: 1.1
+Created-By: Dionisis Nikolopoulos
+Package-Name: Java Hotel Client
+Main-Class: javaHotel.client.HRClient
