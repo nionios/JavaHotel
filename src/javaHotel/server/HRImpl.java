@@ -226,11 +226,22 @@ implements HR {
   }
 
    private synchronized void notifyEmptyRoomListeners (String inputType) {
+       SimplePrinter print = new SimplePrinter();
        for (EmptyRoomListener currentListener : NotifyList) {
            try {
-               currentListener.roomEmptiedTrigger(inputType);
+               /* interestedClient variable is true only when requested toom
+               *  of listener matches the type of room that was just emptied */
+               Boolean interestedClient =
+                   currentListener.roomEmptiedTrigger(inputType);
+               if (interestedClient) {
+                   // Requested room type with emptied room type matches!
+                   print.out("* Notified a client for emptied rooms of type "+
+                             currentListener.getRequestedRoomType());
+                   // Remove the listener now, since the client is notified
+                   removeEmptyRoomListener(currentListener);
+                   print.out("* Removed a client listener");
+               }
            } catch (java.rmi.RemoteException ex) {
-               SimplePrinter print = new SimplePrinter();
                print.out("An EmptyRoomListener is not responding");
                print.out(ex);
            }

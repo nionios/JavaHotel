@@ -23,9 +23,16 @@ public class HRClient extends UnicastRemoteObject implements EmptyRoomListener {
     }
 
     @Override
-    public void roomEmptiedTrigger (String inputType) {
+    public Boolean roomEmptiedTrigger (String inputType) {
         if (inputType.equals(requestedRoom)) {
-        //Room found!
+            //Room found!
+            SimplePrinter print = new SimplePrinter();
+            print.out("* NOTICE: Room(s) of type " + inputType +
+                      " have just been emptied! Book them quickly!");
+            return true;
+        } else {
+            // A room was emptied, but not of the requested type.
+            return false;
         }
     }
 
