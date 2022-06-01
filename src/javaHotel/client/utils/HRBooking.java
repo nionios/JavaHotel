@@ -70,6 +70,9 @@ public class HRBooking {
                             c.notify(inputHostname,
                                      inputType,
                                      inputCustomer);
+                            print.out("* You will now be notified when a room "+
+                                      " of type " + inputType +
+                                      " becomes available!");
                             break;
                         }
                         else if (choice.equals("n") || choice.equals("N")) {

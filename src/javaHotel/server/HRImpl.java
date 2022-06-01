@@ -1,7 +1,7 @@
 package javaHotel.server;
 
-import javaHotel.common.*;
 import javaHotel.helpers.*;
+import javaHotel.common.HR;
 import javaHotel.server.utils.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,13 +11,13 @@ public class HRImpl
 extends java.rmi.server.UnicastRemoteObject
 implements HR {
     List<BookingEntry> BookingList;
-    List<BookingEntry> NotifyList;
+    List<NotifyEntry> NotifyList;
     RoomDatabase RoomDB = new RoomDatabase();
 
     public HRImpl()
         throws java.rmi.RemoteException {
         BookingList = new ArrayList<BookingEntry>();
-        NotifyList  = new ArrayList<BookingEntry>();
+        NotifyList  = new ArrayList<NotifyEntry>();
         //super();
     }
 
@@ -188,6 +188,10 @@ implements HR {
         SimplePrinter print = new SimplePrinter();
         print.out("==> Incoming request for method notify():" +
                   "\n=> Request from " + inputHostname);
+        NotifyEntry inputNotifyEntry = new NotifyEntry(inputType, inputName);
+        NotifyList.add(inputNotifyEntry);
+        print.out("* Created notify entry for room type " + inputType +
+                  " for customer " + inputName);
    }
 
    //private synchronized void notifyAvailabilityListeners
