@@ -1,23 +1,22 @@
 package javaHotel.server;
 
 import javaHotel.helpers.*;
-import javaHotel.common.HR;
+import javaHotel.common.*;
 import javaHotel.server.utils.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.rmi.RemoteException;
 
 public class HRImpl
 extends java.rmi.server.UnicastRemoteObject
 implements HR {
     List<BookingEntry> BookingList;
-    List<NotifyEntry> NotifyList;
+    List<EmptyRoomListener> NotifyList;
     RoomDatabase RoomDB = new RoomDatabase();
 
     public HRImpl()
         throws java.rmi.RemoteException {
         BookingList = new ArrayList<BookingEntry>();
-        NotifyList  = new ArrayList<NotifyEntry>();
+        NotifyList  = new ArrayList<EmptyRoomListener>();
         //super();
     }
 
@@ -117,7 +116,7 @@ implements HR {
    }
 
 
-   public Boolean cancel
+   public synchronized Boolean cancel
    (String hostname, String inputType, int toBeCancelledRooms, String inputName)
        throws java.rmi.RemoteException {
         SimplePrinter print = new SimplePrinter();
@@ -136,6 +135,8 @@ implements HR {
        }
        // Add the amount of rooms cancelled to available rooms
        addAvailableRooms(inputType,toBeCancelledRooms);
+       // When a room is cancelled, notify all listeners!
+       notifyEmptyRoomListeners(inputType);
        print.out("* Cancelled " + toBeCancelledRooms +
                  " room(s) of type " + inputType +
                  " for customer " + inputName);
@@ -183,28 +184,35 @@ implements HR {
         return info;
    }
 
-   public void notify(String inputHostname, String inputType, String inputName)
+   @Override
+   public synchronized void addEmptyRoomListener
+   (String inputHostname, EmptyRoomListener inputClientListener)
        throws java.rmi.RemoteException {
-        SimplePrinter print = new SimplePrinter();
-        print.out("==> Incoming request for method notify():" +
-                  "\n=> Request from " + inputHostname);
-        NotifyEntry inputNotifyEntry = new NotifyEntry(inputType, inputName);
-        NotifyList.add(inputNotifyEntry);
-        print.out("* Created notify entry for room type " + inputType +
-                  " for customer " + inputName);
+       SimplePrinter print = new SimplePrinter();
+       print.out("==> Incoming request for method addEmptyRoomListener():" +
+               "\n=> Request from " + inputHostname);
+       NotifyList.add(inputClientListener);
+       print.out("* Created notify entry for room type " +
+                 inputClientListener.getRequestedRoomType());
    }
 
-   //private synchronized void notifyAvailabilityListeners
-   //    (String inputType, int inputNumber) {
-   //    for (EmptyRoomListener roomListener : getAvailableRooms(inputType)/*.keySet()*/) {
-   //        try {
-   //            roomListener.Trigger(inputType, inputNumber);
-   //        } catch (RemoteException ex) {
-   //            SimplePrinter print = new SimplePrinter();
-   //            print.out("EmptyRoomListener is not responding");
-   //            print.out(ex);
-   //        }
-   //    }
-   //}
+   @Override
+   public synchronized void removeEmptyRoomListener
+   (EmptyRoomListener toBeRemovedClientListener)
+            throws java.rmi.RemoteException {
+            NotifyList.remove(toBeRemovedClientListener);
+  }
+
+   private synchronized void notifyEmptyRoomListeners (String inputType) {
+       for (EmptyRoomListener currentListener : NotifyList) {
+           try {
+               currentListener.roomEmptiedTrigger(inputType);
+           } catch (java.rmi.RemoteException ex) {
+               SimplePrinter print = new SimplePrinter();
+               print.out("An EmptyRoomListener is not responding");
+               print.out(ex);
+           }
+       }
+   }
 
 }

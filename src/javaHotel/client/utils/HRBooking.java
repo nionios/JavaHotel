@@ -1,5 +1,6 @@
 package javaHotel.client.utils;
 
+import javaHotel.client.HRClient;
 import javaHotel.common.*;
 import javaHotel.helpers.*;
 import java.rmi.RemoteException;
@@ -67,9 +68,12 @@ public class HRBooking {
                     while (true) {
                         String choice = scan.nextLine();
                         if (choice.equals("y") || choice.equals("Y")) {
-                            c.notify(inputHostname,
-                                     inputType,
-                                     inputCustomer);
+                            HRClient inputClientListener =
+                                new HRClient(inputType);
+                            // Ask the server method to add the listener
+                            // so the client is notified when the room empties
+                            c.addEmptyRoomListener
+                                (inputHostname, inputClientListener);
                             print.out("* You will now be notified when a room "+
                                       " of type " + inputType +
                                       " becomes available!");

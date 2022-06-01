@@ -12,12 +12,16 @@ public interface HR extends java.rmi.Remote {
    (String hostname, String inputType, int toBeCancelledRooms, String inputName)
             throws java.rmi.RemoteException;
 
-    void notify(String inputHostname, String inputType, String InputName)
-            throws java.rmi.RemoteException;
-
     String list(String hostname)
             throws java.rmi.RemoteException;
 
     String guests(String hostname)
+            throws java.rmi.RemoteException;
+
+    void addEmptyRoomListener
+        (String Hostname, EmptyRoomListener inputClientListener)
+            throws java.rmi.RemoteException;
+
+    void removeEmptyRoomListener (EmptyRoomListener toBeRemovedClientListener)
             throws java.rmi.RemoteException;
 }

@@ -5,14 +5,32 @@ import javaHotel.client.utils.*;
 import javaHotel.common.*;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 
-public class HRClient {
+public class HRClient extends UnicastRemoteObject implements EmptyRoomListener {
+
+    String requestedRoom;
 
     private static void usage() {
         System.out.println("Usage: java HRClient [options] [suboptions]");
     }
+
+    // Set the requested room for this client
+    public HRClient(String inputRequestedRoom) throws RemoteException {
+        requestedRoom = inputRequestedRoom;
+    }
+
+    @Override
+    public void roomEmptiedTrigger (String inputType) {
+        if (inputType.equals(requestedRoom)) {
+        //Room found!
+        }
+    }
+
+    @Override
+    public String getRequestedRoomType () { return requestedRoom; }
 
     public static void main(String[] args) {
         SimplePrinter print = new SimplePrinter();

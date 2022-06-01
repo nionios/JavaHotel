@@ -15,11 +15,16 @@ echo "* Compiled helpers into .class files to ../bin/! (4/4)"
 echo "* Compiled server .java server files into .class files to ../bin/!"
 cd ../bin/
 echo "* Moved into ../bin/"
-echo "> Generating stub file with rmic...(0/1)"
+echo "> Generating stub files with rmic...(0/2)"
 rmic javaHotel.server.HRImpl
+echo "* Generated HRImpl_Stub file with rmic...(1/2)"
+rmic javaHotel.client.HRClient
+echo "* Generated HRClient_Stub file with rmic...(2/2)"
 echo "* Generated stub file with rmic! (1/1)"
 mv ./javaHotel/server/HRImpl_Stub.class ./javaHotel/client/
-echo "* Moved stub file to ./bin/client/!"
+echo "* Moved HRImpl_Stub file to ./bin/client/!"
+mv ./javaHotel/client/HRClient_Stub.class ./javaHotel/server/
+echo "* Moved HRImpl_Client file to ./bin/server/!"
 echo "> Generating jar files...(0/2)"
 jar cvfm JavaHotelServer.jar ../src/javaHotel/manifests/serverManifest.mf javaHotel/server/* javaHotel/common/* javaHotel/helpers/*
 echo "* Generated Server jar file! (1/2)"

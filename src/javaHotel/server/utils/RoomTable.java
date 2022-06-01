@@ -3,11 +3,8 @@ package javaHotel.server.utils;
 public class RoomTable {
     int availableRoomNumber;
     int RoomPrice;
-    EmptyRoomListener tableListener;
 
     public RoomTable(int initNumber, int initPrice) {
-        // TODO: what do I do with this??
-        //tableListener = new EmptyRoomListener();
         availableRoomNumber = initNumber;
         RoomPrice = initPrice;
     }
