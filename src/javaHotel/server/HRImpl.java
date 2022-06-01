@@ -128,19 +128,41 @@ implements HR {
        int availableRooms = getAvailableRooms(inputType);
        if (toBeCancelledRooms < availableRooms) return false;
        // Look through the Booking List and delete the aproppriate entry
+       int indexOfCancelledEntry = 0;
+       Boolean cancellableFlag = false;
+       /* The following loop is cancelling the rooms *after* the check is made
+        * and the rooms are confirmed to be booked by customer "inputName",
+        * since it is impossible to delete currentBookingEntry within the loop.
+        * That would result in a java.util.ConcurrentModificationException */
        for (BookingEntry currentBookingEntry : BookingList) {
+           // If the input info from client matches...
            if (currentBookingEntry.getCustomerName().equals(inputName) ||
-               currentBookingEntry.getType().equals(inputType))
-               BookingList.remove(currentBookingEntry);
+               currentBookingEntry.getType().equals(inputType)) {
+               //Set the cancellableFlag so we know input info matched
+               cancellableFlag = true;
+               break;
+           }
+           // Every iteration target the new index of array that will be checked
+           indexOfCancelledEntry += 1;
        }
-       // Add the amount of rooms cancelled to available rooms
-       addAvailableRooms(inputType,toBeCancelledRooms);
-       // When a room is cancelled, notify all listeners!
-       notifyEmptyRoomListeners(inputType);
-       print.out("* Cancelled " + toBeCancelledRooms +
-                 " room(s) of type " + inputType +
-                 " for customer " + inputName);
-       return true;
+       // ... the cancellableFlag will be true and the cancellation will happen
+       if (cancellableFlag) {
+           BookingList.remove(indexOfCancelledEntry);
+           // Add the amount of rooms cancelled to available rooms
+           addAvailableRooms(inputType,toBeCancelledRooms);
+           // When a room is cancelled, notify all listeners!
+           notifyEmptyRoomListeners(inputType);
+           print.out("* Cancelled " + toBeCancelledRooms +
+                   " room(s) of type " + inputType +
+                   " for customer " + inputName);
+           return true;
+       } else {
+           print.out("* No record of " + toBeCancelledRooms +
+                   " room(s) of type " + inputType +
+                   " for customer "    + inputName +
+                   ". Failed to cancel");
+           return false;
+       }
    }
 
    public String list (String hostname)

@@ -20,9 +20,9 @@ public class HRCancel {
                              inputType,
                              inputNumberRooms,
                              inputCustomer))
-                        print.out("* Cancelled " + inputNumberRooms +
+                        print.out("* Cancelled "    + inputNumberRooms +
                                   " rooms of type " + inputType +
-                                  " for customer ");
+                                  " for customer "  + inputCustomer);
                 else print.out("! Could not cancel rooms! Are you sure you" +
                                " booked at least " + inputNumberRooms +
                                " of type " + inputType +
