@@ -12,4 +12,4 @@ can be used by multiple clients concurrently.
 [See RUNNING.md](./RUNNING.md#Running the Project)
 
 ## Building the Project
-[sub-section](./BUILDING.md#Building the Project)
+[See BUILDING.md](./BUILDING.md#Building the Project)
