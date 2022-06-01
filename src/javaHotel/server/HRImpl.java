@@ -135,8 +135,8 @@ implements HR {
         * since it is impossible to delete currentBookingEntry within the loop.
         * That would result in a java.util.ConcurrentModificationException */
        for (BookingEntry currentBookingEntry : BookingList) {
-           // If the input info from client matches...
-           if (currentBookingEntry.getCustomerName().equals(inputName) ||
+           // If all the input info from client matches...
+           if (currentBookingEntry.getCustomerName().equals(inputName) &&
                currentBookingEntry.getType().equals(inputType)) {
                //Set the cancellableFlag so we know input info matched
                cancellableFlag = true;
@@ -218,15 +218,12 @@ implements HR {
                  inputClientListener.getRequestedRoomType());
    }
 
-   @Override
-   public synchronized void removeEmptyRoomListener
-   (EmptyRoomListener toBeRemovedClientListener)
-            throws java.rmi.RemoteException {
-            NotifyList.remove(toBeRemovedClientListener);
-  }
-
    private synchronized void notifyEmptyRoomListeners (String inputType) {
        SimplePrinter print = new SimplePrinter();
+       /* List to keep track of all indexes of client listeners that
+        * have been notified in NotifyList (they will be removed) */
+       List<Integer> RemovalIndexList = new ArrayList<Integer>();
+       int currentListenerIndex = 0;
        for (EmptyRoomListener currentListener : NotifyList) {
            try {
                /* interestedClient variable is true only when requested toom
@@ -237,14 +234,20 @@ implements HR {
                    // Requested room type with emptied room type matches!
                    print.out("* Notified a client for emptied rooms of type "+
                              currentListener.getRequestedRoomType());
-                   // Remove the listener now, since the client is notified
-                   removeEmptyRoomListener(currentListener);
-                   print.out("* Removed a client listener");
+                   // The listener is marked for removal now, since the client
+                   // is notified
+                   RemovalIndexList.add(currentListenerIndex);
+                   print.out("* A Client listener was placed on removal list");
                }
+               currentListenerIndex += 1;
            } catch (java.rmi.RemoteException ex) {
                print.out("An EmptyRoomListener is not responding");
                print.out(ex);
            }
+       }
+       // Remove all listeners that have been notified
+       for (int currentIndex : RemovalIndexList) {
+           NotifyList.remove(currentIndex);
        }
    }
 

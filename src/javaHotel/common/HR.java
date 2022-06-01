@@ -22,6 +22,4 @@ public interface HR extends java.rmi.Remote {
         (String Hostname, EmptyRoomListener inputClientListener)
             throws java.rmi.RemoteException;
 
-    void removeEmptyRoomListener (EmptyRoomListener toBeRemovedClientListener)
-            throws java.rmi.RemoteException;
 }

@@ -26,7 +26,8 @@ public class HRCancel {
                 else print.out("! Could not cancel rooms! Are you sure you" +
                                " booked at least " + inputNumberRooms +
                                " of type " + inputType +
-                               " under the customer name " + inputCustomer);
+                               " under the customer name " + inputCustomer +
+                               "?");
             }
         } catch (RemoteException re) {
             print.out();
