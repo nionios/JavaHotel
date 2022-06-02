@@ -68,4 +68,127 @@
 Έχει γίνει προσπάθεια να γίνει πρόληψη για τα σφάλματα του χρήστη, για
 παράδειγμα η εσφαλμένη είσοδος δεδομένων με διαφορετικό τύπο από τον ζητούμενο
 κ.α.
+\section{Αναλυτικά ο Φάκελος του Παραδοτέου}
+\small{
+\begin{verbatim}
+.
+├── bin  // Κατάλογος με τα εκτελέσημα ερχεία σε java bytecode (.class)
+│   └── javaHotel
+│       ├── client
+│       │   ├── HRClient.class
+│       │   ├── HRImpl_Stub.class
+│       │   └── utils
+│       │       ├── HRBooking.class
+│       │       ├── HRCancel.class
+│       │       ├── HRGuests.class
+│       │       └── HRList.class
+│       ├── common
+│       │   ├── EmptyRoomListener.class
+│       │   └── HR.class
+│       ├── helpers
+│       │   └── SimplePrinter.class
+│       └── server
+│           ├── BookingEntry.class
+│           ├── HR.class
+│           ├── HRClient_Stub.class
+│           ├── HRImpl.class
+│           ├── HRServer.class
+│           └── utils
+│               ├── BookingEntry.class
+│               ├── EmptyRoomListener.class
+│               ├── NotifyEntry.class
+│               ├── RoomDatabase.class
+│               └── RoomTable.class
+├── BUILDING.md // Αρχείο οδηγιών για την μεταγλώττιση
+├── build.sh    // Σενάριο shell για την μεταγλώττιση
+├── doc         // Κατάλογος για το παρών έγγραφο
+│   ├── build.sh // Σενάριο Shell για μεταγλώττιση του παρόντος εγγράφου
+│   ├── core // Κύρια αρχεία
+│   │   ├── derivative-files // Παράγωγα αρχεία μεταγλώττισης
+│   │   │   ├── paper.aux
+│   │   │   ├── paper.log
+│   │   │   ├── paper.out
+│   │   │   └── texput.log
+│   │   ├── paper.tex // Κύριο αρχείο tex
+│   │   └── svg-inkscape // Εικόνες SVG για το παρών έγγραφο
+│   │       ├── code_svg-tex.pdf
+│   │       ├── code_svg-tex.pdf_tex
+│   │       ├── cover_svg-tex.pdf
+│   │       ├── cover_svg-tex.pdf_tex
+│   │       ├── gitlab_svg-tex.pdf
+│   │       ├── gitlab_svg-tex.pdf_tex
+│   │       ├── info_svg-tex.pdf
+│   │       ├── info_svg-tex.pdf_tex
+│   │       ├── question_svg-tex.pdf
+│   │       ├── question_svg-tex.pdf_tex
+│   │       ├── tech_svg-tex.pdf
+│   │       ├── tech_svg-tex.pdf_tex
+│   │       ├── terminal_svg-tex.pdf
+│   │       ├── terminal_svg-tex.pdf_tex
+│   │       ├── vim_svg-tex.pdf
+│   │       ├── vim_svg-tex.pdf_tex
+│   │       ├── words_svg-tex.pdf
+│   │       └── words_svg-tex.pdf_tex
+│   ├── helpers // Συναρτήσεις "βοηθοί" (βοηθητικές) για την συγγραφή
+│   │   └── svg-functions.tex
+│   ├── img // Εικόνες PNG για το παρών έγγραφο
+│   │   ├── cc.png
+│   │   ├── coded.png
+│   │   ├── info.png
+│   │   └── java-hotel.png
+│   ├── pdf // Παράγωγο αρχείο PDF (Αυτό που διαβάζετε τώρα!)
+│   │   └── JavaHotel.pdf
+│   ├── sections // Κεφάλαια τις εργασίας
+│   │   ├── 2nd_Section.tex
+│   │   └── Abstract.tex
+│   └── svg // Εικόνες SVG πριν την ενδιάμεση μεταγλώττιση
+│       ├── code.svg
+│       ├── cover.svg
+│       ├── gitlab.svg
+│       ├── info.svg
+│       ├── magnifying.svg
+│       ├── question.svg
+│       ├── tech.svg
+│       ├── terminal.svg
+│       ├── vim.svg
+│       └── words.svg
+├── exc   // Κατάλογος με την εκφώνηση της εργασίας
+│   └── exercise-outline.pdf
+├── img   // Κατάλογος με της εικόνες του αποθετηρίου
+│   ├── java-hotel.png
+│   └── java-hotel.xcf
+├── jar   // Κατάλογος με τα εκτελέσημα Jar αρχεία του προγράμματος
+│   ├── JavaHotelClient.jar
+│   └── JavaHotelServer.jar
+├── LICENSE    // Άδεια του προγράμματος
+├── README.md  // Γενικές πληροφορίες προγράμματος
+├── RUNNING.md // Πληροφορίες για την εκτέλεση του προγράμματος
+└── src // Κατάλογος με τον πηγαίο κώδικα
+    └── javaHotel
+        ├── client // Κατάλογος για τα αρχεία πηγαίου κώδικα Client
+        │   ├── HRClient.java
+        │   └── utils // Εργαλέια HRClient (κλάσεις για υλοπ. λειτουργιών)
+        │       ├── HRBooking.java
+        │       ├── HRCancel.java
+        │       ├── HRGuests.java
+        │       └── HRList.java
+        ├── common // Κοινά Interfaces για τον HRClient - HRServer
+        │   ├── EmptyRoomListener.java
+        │   └── HR.java
+        ├── helpers // Κλάσεις "βοηθοί" (βοηθητικές στο κύριο πρόγραμμα)
+        │   └── SimplePrinter.java
+        ├── manifests // Αρχεία για το metadata των αρχείων Jar
+        │   ├── clientManifest.mf
+        │   └── serverManifest.mf
+        └── server // Κατάλογος για τα αρχεία πηγαίου κώδικα server
+            ├── HRImpl.java
+            ├── HRServer.java
+            └── utils // "Εργαλεία" server (Κλάσεις για υλοπ. λειτουργιών)
+                ├── BookingEntry.java
+                ├── RoomDatabase.java
+                └── RoomTable.java
+
+20 Κατάλογοι, 44 αρχεία (Διάγραμμα με την βοήθεια της unix εντολής tree)
+\end{verbatim}
+}
 \section{Ενδεικτικά Τρεξίματα}

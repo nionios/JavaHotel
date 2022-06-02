@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Arch Linux) (preloaded format=xelatex 2022.5.5)  2 JUN 2022 14:49
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Arch Linux) (preloaded format=xelatex 2022.5.5)  2 JUN 2022 19:12
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1042,7 +1042,49 @@ Overfull \hbox (47.33617pt too wide) in paragraph at lines 19--33
 R και EmptyRoomListener
  []
 
-[2]) [3] (./paper.aux)
+[2]
+Overfull \hbox (23.13055pt too wide) in paragraph at lines 192--192
+[]\TU/FiraCode(0)/m/n/10.95 ├── bin  // Κατάλογος με τα εκτελέσημα ερχεία σε ja
+va bytecode (.class)[] 
+ []
+
+[3]
+Overfull \hbox (29.86903pt too wide) in paragraph at lines 192--192
+[]\TU/FiraCode(0)/m/n/10.95 │   ├── build.sh // Σενάριο Shell για μεταγλώττιση 
+του παρόντος εγγράφου[] 
+ []
+
+[4]
+Overfull \hbox (9.65364pt too wide) in paragraph at lines 192--192
+[]\TU/FiraCode(0)/m/n/10.95 │   ├── helpers // Συναρτήσεις "βοηθοί" (βοηθητικές
+) για την συγγραφή[] 
+ []
+
+[5]
+Overfull \hbox (43.346pt too wide) in paragraph at lines 192--192
+[]        \TU/FiraCode(0)/m/n/10.95 │   └── utils // Εργαλέια HRClient (κλάσεις
+ για υλοπ. λειτουργιών)[] 
+ []
+
+
+Overfull \hbox (29.86906pt too wide) in paragraph at lines 192--192
+[]        \TU/FiraCode(0)/m/n/10.95 ├── helpers // Κλάσεις "βοηθοί" (βοηθητικές
+ στο κύριο πρόγραμμα)[] 
+ []
+
+
+Overfull \hbox (43.346pt too wide) in paragraph at lines 192--192
+[]            \TU/FiraCode(0)/m/n/10.95 └── utils // "Εργαλεία" server (Κλάσεις
+ για υλοπ. λειτουργιών)[] 
+ []
+
+
+Overfull \hbox (29.86902pt too wide) in paragraph at lines 192--192
+[]\TU/FiraCode(0)/m/n/10.95 20 Κατάλογοι, 44 αρχεία (Διάγραμμα με την βοήθεια τ
+ης unix εντολής tree)[] 
+ []
+
+) [6] (./paper.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
@@ -1053,15 +1095,15 @@ Package rerunfilecheck Warning: File `paper.out' has changed.
 
 Package rerunfilecheck Info: Checksums for `paper.out':
 (rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  5FC01E2F7D946A68926813D75D418324;366.
+(rerunfilecheck)             After:  1329CA69B63BD7746A24D92D8C0CC370;681.
  ) 
 Here is how much of TeX's memory you used:
- 30100 strings out of 476156
- 601296 string characters out of 5814964
- 975525 words of memory out of 5000000
- 50329 multiletter control sequences out of 15000+600000
- 472874 words of font info for 62 fonts, out of 8000000 for 9000
+ 30103 strings out of 476156
+ 601376 string characters out of 5814964
+ 975468 words of memory out of 5000000
+ 50331 multiletter control sequences out of 15000+600000
+ 472882 words of font info for 63 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  108i,9n,106p,421b,781s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on paper.pdf (3 pages).
+Output written on paper.pdf (6 pages).
