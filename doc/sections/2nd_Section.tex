@@ -45,18 +45,18 @@
 \begin{figure}[ht]
     \centering
     \begin{tikzpicture}
-        \node (left) at (0,2.5) {HRClient};
-        \node (middle) at (6,5) {RMI Registry};
-        \node (middledown) at (6,0) {Interfaces};
-        \node (right) at (12,2.5) {RPC Server};
-        \draw[->,orange] (left.north)     .. controls +(up:2cm)    and +(left:1cm)    .. node[above,sloped] {\small Επιλογές, Πληροφορίες Κράτησης} (middle.west);
-        \draw[<-<,orange] (right.north)   .. controls +(up:2cm)    and +(right:0cm)    .. node[above,sloped] {\small Επιλογές, Πληροφορίες Κράτησης} (middle.east);
-        \draw[-<,blue] (middle.south)     .. controls +(down:2cm)  and +(left:1.2cm) .. node[above,sloped] {\small Ειδοποίηση} (right.west);
-        \draw[-<,red] (middle.south)      .. controls +(down:5cm)  and +(left:1.5cm) .. node[below,sloped] {\small Απάντηση} (right.west);
-        \draw[->,blue] (middle.south)     .. controls +(down:2cm)  and +(right:1.2cm) .. node[above,sloped] {\small Ειδοποίηση} (left.east);
-        \draw[->,red] (middle.south)      .. controls +(down:5cm)  and +(right:1.5cm) .. node[below,sloped] {\small Απάντηση} (left.east);
-        \draw[-,brown] (left.south)  .. controls +(down:2cm) and +(left:0cm)   .. node[below,sloped] {\small Περίγραμμα Κλάσης} (middledown.west);
-        \draw[-,brown] (right.south)  .. controls +(down:2cm) and +(right:0cm)   .. node[below,sloped] {\small Περίγραμμα Κλάσης} (middledown.east);
+        \node (left)       at (0,2.5)  {HRClient};
+        \node (middle)     at (6,5)    {RMI Registry};
+        \node (middledown) at (6,0)    {Interfaces};
+        \node (right)      at (12,2.5) {RPC Server};
+        \draw[->,orange]  (left.north)   .. controls +(up:2cm)   and +(left:1cm)    .. node[above,sloped] {\small Επιλογές, Πληροφορίες Κράτησης} (middle.west);
+        \draw[<-<,orange] (right.north)  .. controls +(up:2cm)   and +(right:0cm)   .. node[above,sloped] {\small Επιλογές, Πληροφορίες Κράτησης} (middle.east);
+        \draw[-<,blue]    (middle.south) .. controls +(down:2cm) and +(left:1.2cm)  .. node[above,sloped] {\small Ειδοποίηση} (right.west);
+        \draw[-<,red]     (middle.south) .. controls +(down:5cm) and +(left:1.5cm)  .. node[below,sloped] {\small Απάντηση}   (right.west);
+        \draw[->,blue]    (middle.south) .. controls +(down:2cm) and +(right:1.2cm) .. node[above,sloped] {\small Ειδοποίηση} (left.east);
+        \draw[->,red]     (middle.south) .. controls +(down:5cm) and +(right:1.5cm) .. node[below,sloped] {\small Απάντηση}   (left.east);
+        \draw[-,brown]    (left.south)   .. controls +(down:2cm) and +(left:0cm)    .. node[below,sloped] {\small Περίγραμμα Κλάσης} (middledown.west);
+        \draw[-,brown]    (right.south)  .. controls +(down:2cm) and +(right:0cm)   .. node[below,sloped] {\small Περίγραμμα Κλάσης} (middledown.east);
     \end{tikzpicture}
     \caption{\footnotesize{Η αρχιτεκτονική του προγράμματος}}
     \label{fig:searx-oper}
@@ -69,11 +69,11 @@
 παράδειγμα η εσφαλμένη είσοδος δεδομένων με διαφορετικό τύπο από τον ζητούμενο
 κ.α.
 \section{Αναλυτικά ο Φάκελος του Παραδοτέου}
-\small{
+\footnotesize
 \begin{verbatim}
 .
-├── bin  // Κατάλογος με τα εκτελέσημα ερχεία σε java bytecode (.class)
-│   └── javaHotel
+├── bin  // Κατάλογος με τα εκτελέσιμα ερχεία σε java bytecode (.class)
+│   └── javaHotel // Ο κατάλογος αυτός καθρεπτίζει τον κατάλογο πηγαίου κώδικα
 │       ├── client
 │       │   ├── HRClient.class
 │       │   ├── HRImpl_Stub.class
@@ -190,5 +190,102 @@
 
 20 Κατάλογοι, 44 αρχεία (Διάγραμμα με την βοήθεια της unix εντολής tree)
 \end{verbatim}
-}
+\normalsize
+\clearpage
 \section{Ενδεικτικά Τρεξίματα}
+Αρχικά, τρέχουμε την εντολή rmiregistry 7500 στον κατάλογο /bin
+\begin{center}
+    \includegraphics[scale=0.8]{rmiRegistry}
+\end{center}
+Έπειτα. τρέχουμε τον HRServer:
+\\
+Είτε με τα class files ως εξής:
+\begin{center}
+    \includegraphics[scale=0.8]{serverStartClass}
+\end{center}
+Είτε με τα jar files ως εξής:
+\begin{center}
+    \includegraphics[scale=0.8]{serverStartJar}
+\end{center}
+
+Έπειτα. τρέχουμε τον HRClient, πχ με την εντολή list:
+\\
+Είτε με τα class files ως εξής:
+\begin{center}
+    \includegraphics[scale=0.6]{clientStartClass}
+\end{center}
+Είτε με τα jar files ως εξής:
+\begin{center}
+    \includegraphics[scale=0.6]{clientStartJar}
+\end{center}
+Θα συνεχίσουμε τα παραδείγματά μας με την μέθοδο των jar αρχείων.
+\\
+Θα δούμε λοιπόν την εξής διαδικασία με το επόμενο παράδειγμα:
+\begin{enumerate}
+\item Ο πρώτος μας πελάτης Dennis πάει να κλείσει 100 δωμάτια τύπου Ε.
+\item Ο HRServer του παντά ότι υπάρχουν μονάχα 10 δωμάτια τύπου Ε.
+    Άρα ο Dennis ερωτείται από τον HRServer για το αν θέλει να κλείσει τα 10
+    δωμάτια που υπάρχουν.
+\begin{center}
+    \includegraphics[scale=0.6]{step1}
+\end{center}
+\item Ο Dennis απαντά με "nai" αρχικά, αλλά ο server δεν δέχεται την απάντηση,
+    καθώς οι ορθές απαντήσεις είναι "y" για θετική απάντηση και "n" για
+    αρνητική (case insensitive).
+    Ο Dennis ερωτείται ξανά, αυτή την φορά βάζει την απάντηση "y" ορθά.
+\begin{center}
+    \includegraphics[scale=0.6]{step2}
+\end{center}
+\item Τα 10 δωμάτια τύπου Ε κλείνονται στο όνομα Dennis.
+\begin{center}
+    \includegraphics[scale=0.6]{step3}
+\end{center}
+\item Ένας δεύτερος πελάτης, ο Nionios πάει να κλείσει 5 δωμάτια τύπου Ε, αλλά
+    με λανθασμένη σύνταξη εντολής.
+\begin{center}
+    \includegraphics[scale=0.6]{step4}
+\end{center}
+\item Ο HRClient ενημερώνει των Nionios για την σωστή σύνταξη της εντολής, ο
+    Nionios αυτή την φορά συντάσσει σωστά την εντολή και τρέχει τον HRClient.
+\begin{center}
+    \includegraphics[scale=0.6]{step5}
+\end{center}
+\item Ο HRServer απαντάει στον Nionios ότι τα δωμάτια που επιθυμεί είναι
+    κρατημένα, αλλά τον ρωτά για το άμα θέλει να ειδοποηθεί σε περίπτωση που
+    αδειάσουν, ο Nionios απαντά θετικά.
+    Ο HRClient του Nionios μπαίνει σε αναμονή,
+\begin{center}
+    \includegraphics[scale=0.6]{step6}
+\end{center}
+\item Ένας τρίτος πελάτης, ο Dionisis, τρέχει την εντολή guests.
+\begin{center}
+    \includegraphics[scale=0.6]{step7}
+\end{center}
+\item Ο HRServer του απαντά με την λίστα με τις κρατήσεις, στην οποία ο 
+    Dionisis βρίσκει την κράτηση του συνονόματου Dennis και νομίζει ότι έχει
+    κάνει κρατηση.
+\begin{center}
+    \includegraphics[scale=0.6]{step8}
+\end{center}
+\item Ο Dionisis προσπαθει να ακυρώσει 10 δωμάτια τύπου E με το όνομα Dionisis
+    αλλά ο HRServer δεν τον αφήνει καθώς δεν υπάρχει κράτηση το όνομα Dionisis.
+    Ο Dionisis καταλαβαίνει το λάθος του και φεύγει.
+\begin{center}
+    \includegraphics[scale=0.6]{step9}
+\end{center}
+\item Ο Dennis επιστρέφει και ακυρώνει τα 10 δωμάτια τύπου Ε στο όνομα του,
+    καθώς αρρώστησε και δεν μπορεί να πάει στο JavaHotel. Ο Dennis φεύγει.
+\begin{center}
+    \includegraphics[scale=0.6]{step10}
+\end{center}
+\item Ο Nionios, που μέχρι τώρα ανάμενε και βρισκόταν στην λίστα ειδοποίησης,
+    ειδοποιείται ότι τα δωμάτια για τα οποία αναμένει άδειασαν.
+\begin{center}
+    \includegraphics[scale=0.6]{step11}
+\end{center}
+\end{enumerate}
+Για καθεμία από αυτές τις ενέργειες, ο HRServer κρατά logs, υπάρχει error
+checking και τρέχουν παράλληλα εντολές.
+\\
+Το javaHotel δουλεύει επιτυχώς!
+

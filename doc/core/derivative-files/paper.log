@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Arch Linux) (preloaded format=xelatex 2022.5.5)  2 JUN 2022 19:12
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Arch Linux) (preloaded format=xelatex 2022.5.5)  2 JUN 2022 20:17
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -862,8 +862,7 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layouthoffset=\dimen294
 \Gm@layoutvoffset=\dimen295
 \Gm@dimlist=\toks38
-)
-No file paper.aux.
+) (./paper.aux)
 \openout1 = `paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 106.
@@ -877,6 +876,7 @@ LaTeX Font Info:    ... okay on input line 106.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 106.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 1
 06.
+
 (/usr/share/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
@@ -914,15 +914,13 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 106.
 LaTeX Info: Redefining \pageref on input line 106.
 LaTeX Info: Redefining \nameref on input line 106.
+
+(./paper.out) (./paper.out)
 \@outlinefile=\write4
 \openout4 = `paper.out'.
 
-
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
 \c@lstlisting=\count341
-(|'inkscape' -V )
+ (|'inkscape' -V )
 
 Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
 (fontspec)             this).
@@ -1043,67 +1041,134 @@ R και EmptyRoomListener
  []
 
 [2]
-Overfull \hbox (23.13055pt too wide) in paragraph at lines 192--192
-[]\TU/FiraCode(0)/m/n/10.95 ├── bin  // Κατάλογος με τα εκτελέσημα ερχεία σε ja
-va bytecode (.class)[] 
+Overfull \hbox (24.69977pt too wide) in paragraph at lines 192--192
+[]\TU/FiraCode(0)/m/n/10 │   └── javaHotel // Ο κατάλογος αυτός καθρεπτίζει τον
+ κατάλογο πηγαίου κώδικα[] 
  []
 
-[3]
-Overfull \hbox (29.86903pt too wide) in paragraph at lines 192--192
-[]\TU/FiraCode(0)/m/n/10.95 │   ├── build.sh // Σενάριο Shell για μεταγλώττιση 
-του παρόντος εγγράφου[] 
+[3] [4] [5] [6]
+File: ./img//rmiRegistry.png Graphic file (type bmp)
+<./img//rmiRegistry.png>
+
+Overfull \hbox (58.9578pt too wide) in paragraph at lines 198--199
+ [] 
  []
 
-[4]
-Overfull \hbox (9.65364pt too wide) in paragraph at lines 192--192
-[]\TU/FiraCode(0)/m/n/10.95 │   ├── helpers // Συναρτήσεις "βοηθοί" (βοηθητικές
-) για την συγγραφή[] 
+File: ./img//serverStartClass.png Graphic file (type bmp)
+<./img//serverStartClass.png>
+
+Overfull \hbox (60.16214pt too wide) in paragraph at lines 204--205
+ [] 
  []
 
-[5]
-Overfull \hbox (43.346pt too wide) in paragraph at lines 192--192
-[]        \TU/FiraCode(0)/m/n/10.95 │   └── utils // Εργαλέια HRClient (κλάσεις
- για υλοπ. λειτουργιών)[] 
+File: ./img//serverStartJar.png Graphic file (type bmp)
+<./img//serverStartJar.png>
+
+Overfull \hbox (60.16214pt too wide) in paragraph at lines 208--209
+ [] 
  []
 
+[7
 
-Overfull \hbox (29.86906pt too wide) in paragraph at lines 192--192
-[]        \TU/FiraCode(0)/m/n/10.95 ├── helpers // Κλάσεις "βοηθοί" (βοηθητικές
- στο κύριο πρόγραμμα)[] 
+]
+File: ./img//clientStartClass.png Graphic file (type bmp)
+<./img//clientStartClass.png>
+File: ./img//clientStartJar.png Graphic file (type bmp)
+<./img//clientStartJar.png>
+ [8]
+File: ./img//step1.png Graphic file (type bmp)
+<./img//step1.png>
+
+Overfull \hbox (4.65596pt too wide) in paragraph at lines 230--231
+ [] 
  []
 
+[9]
+File: ./img//step2.png Graphic file (type bmp)
+<./img//step2.png>
 
-Overfull \hbox (43.346pt too wide) in paragraph at lines 192--192
-[]            \TU/FiraCode(0)/m/n/10.95 └── utils // "Εργαλεία" server (Κλάσεις
- για υλοπ. λειτουργιών)[] 
+Overfull \hbox (4.65596pt too wide) in paragraph at lines 237--238
+ [] 
  []
 
+File: ./img//step3.png Graphic file (type bmp)
+<./img//step3.png>
 
-Overfull \hbox (29.86902pt too wide) in paragraph at lines 192--192
-[]\TU/FiraCode(0)/m/n/10.95 20 Κατάλογοι, 44 αρχεία (Διάγραμμα με την βοήθεια τ
-ης unix εντολής tree)[] 
+Overfull \hbox (4.65596pt too wide) in paragraph at lines 241--242
+ [] 
  []
 
-) [6] (./paper.aux)
+File: ./img//step4.png Graphic file (type bmp)
+<./img//step4.png>
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+Overfull \hbox (9.62395pt too wide) in paragraph at lines 246--247
+ [] 
+ []
 
+[10]
+File: ./img//step5.png Graphic file (type bmp)
+<./img//step5.png>
 
-Package rerunfilecheck Warning: File `paper.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
+Overfull \hbox (9.62395pt too wide) in paragraph at lines 251--252
+ [] 
+ []
 
-Package rerunfilecheck Info: Checksums for `paper.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  1329CA69B63BD7746A24D92D8C0CC370;681.
+File: ./img//step6.png Graphic file (type bmp)
+<./img//step6.png>
+
+Overfull \hbox (9.62395pt too wide) in paragraph at lines 258--259
+ [] 
+ []
+
+[11]
+File: ./img//step7.png Graphic file (type bmp)
+<./img//step7.png>
+
+Overfull \hbox (26.33438pt too wide) in paragraph at lines 262--263
+ [] 
+ []
+
+File: ./img//step8.png Graphic file (type bmp)
+<./img//step8.png>
+
+Overfull \hbox (26.33438pt too wide) in paragraph at lines 268--269
+ [] 
+ []
+
+[12]
+File: ./img//step9.png Graphic file (type bmp)
+<./img//step9.png>
+
+Overfull \hbox (41.23834pt too wide) in paragraph at lines 274--275
+ [] 
+ []
+
+File: ./img//step10.png Graphic file (type bmp)
+<./img//step10.png>
+
+Overfull \hbox (4.65596pt too wide) in paragraph at lines 279--280
+ [] 
+ []
+
+[13]
+File: ./img//step11.png Graphic file (type bmp)
+<./img//step11.png>
+
+Overfull \hbox (9.62395pt too wide) in paragraph at lines 284--285
+ [] 
+ []
+
+) [14] (./paper.aux)
+Package rerunfilecheck Info: File `paper.out' has not changed.
+(rerunfilecheck)             Checksum: 1329CA69B63BD7746A24D92D8C0CC370;681.
  ) 
 Here is how much of TeX's memory you used:
- 30103 strings out of 476156
- 601376 string characters out of 5814964
- 975468 words of memory out of 5000000
- 50331 multiletter control sequences out of 15000+600000
+ 30398 strings out of 476156
+ 607259 string characters out of 5814964
+ 976358 words of memory out of 5000000
+ 50620 multiletter control sequences out of 15000+600000
  472882 words of font info for 63 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  108i,9n,106p,421b,781s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on paper.pdf (6 pages).
+Output written on paper.pdf (14 pages).
